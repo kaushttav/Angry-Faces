@@ -58,8 +58,18 @@ function draw(){
     platform.display();
 }
 function mouseDragged(){
+    // if(gameState !== "launched"){
     Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY});
+    // }
 }
 function mouseReleased(){
     Slingshot.fly();
+    gameState = "launched";
+}
+function keyPressed(){
+    if(keyCode === 32){
+        bird.trajectory = [];
+        Matter.Body.setPosition(bird.body,{x:200,y:50});
+        Slingshot.attach(bird.body);
+    }
 }
